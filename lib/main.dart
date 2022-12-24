@@ -1,10 +1,12 @@
 import 'package:finowise/controller/dashboard_controller.dart';
-import 'package:finowise/view/DashboardView.dart';
-import 'package:finowise/view/LoginView.dart';
+import 'package:finowise/preferences/app_preference.dart';
+import 'package:finowise/preferences/routes.dart';
+import 'package:finowise/view/SplashScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 
 void main() {
+  Get.put(AppPreference());
   runApp(const MyApp());
 }
 
@@ -18,7 +20,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: DashBoardView(),
+      home: const SplashScreen(),
+      getPages: Routes.routes,
     );
   }
 }

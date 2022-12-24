@@ -4,8 +4,29 @@ import 'package:get/get.dart';
 import 'card_entity_widget.dart';
 
 class TradeCardWidget extends StatelessWidget {
+  final String? cardHeadline;
+  final String? date;
+  final String? type;
+  final String? entry;
+  final String? exit;
+  final String? stopLoss;
+  final String? stockName;
+  final String? action;
+  final String? status;
+  final String? postedBy;
+
   const TradeCardWidget({
     Key? key,
+    this.cardHeadline,
+    this.date,
+    this.type,
+    this.entry,
+    this.exit,
+    this.stopLoss,
+    this.stockName,
+    this.action,
+    this.status,
+    this.postedBy,
   }) : super(key: key);
 
   @override
@@ -19,9 +40,10 @@ class TradeCardWidget extends StatelessWidget {
       height: 300,
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
             height: 50,
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.only(
@@ -31,23 +53,28 @@ class TradeCardWidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "XYZ Trade",
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                Container(
+                  constraints: BoxConstraints(maxWidth: Get.width / 2),
+                  child: Text(
+                    cardHeadline ?? '',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
                 ),
                 Row(
-                  children: const [
+                  children: [
                     Text(
-                      "22-10-2022",
-                      style: TextStyle(color: Colors.white),
+                      date ?? '',
+                      style: const TextStyle(color: Colors.white),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 8,
                     ),
-                    Icon(
+                    const Icon(
                       Icons.arrow_circle_right_outlined,
                       color: Colors.white70,
                     )
@@ -61,15 +88,15 @@ class TradeCardWidget extends StatelessWidget {
             children: [
               CardEntityWidget(
                 heading: 'Type:',
-                value: 'Equity',
+                value: type ?? '',
               ),
               CardEntityWidget(
-                heading: 'Type:',
-                value: '150',
+                heading: 'Entry:',
+                value: entry ?? '',
               ),
               CardEntityWidget(
-                heading: 'Type:',
-                value: '350',
+                heading: 'Exit:',
+                value: exit ?? '',
               ),
             ],
           ),
@@ -77,16 +104,16 @@ class TradeCardWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               CardEntityWidget(
-                heading: 'Step Loss:',
-                value: 'Equity',
+                heading: 'Stop Loss:',
+                value: stopLoss ?? '',
               ),
               CardEntityWidget(
                 heading: 'Stock Name:',
-                value: '150',
+                value: stockName ?? '',
               ),
               CardEntityWidget(
                 heading: 'Action',
-                value: '350',
+                value: action ?? '',
               ),
             ],
           ),
@@ -95,13 +122,13 @@ class TradeCardWidget extends StatelessWidget {
             children: [
               CardEntityWidget(
                 isBackground: true,
-                heading: 'Result:',
-                value: 'Equity',
+                heading: 'Status:',
+                value: status ?? '',
               ),
               CardEntityWidget(
                 isBackground: true,
                 heading: 'Posted by:',
-                value: '150',
+                value: postedBy ?? '',
               ),
             ],
           ),

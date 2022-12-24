@@ -1,4 +1,5 @@
 import 'package:country_picker/country_picker.dart';
+import 'package:finowise/utils/alert.dart';
 import 'package:finowise/widgets/googleButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -75,9 +76,8 @@ class LoginView extends StatelessWidget {
                                     onSelect: (Country country) {
                                       _controller.changeCountry(
                                           country.flagEmoji,
-                                          "+ ${country.phoneCode}",
+                                          "+${country.phoneCode}",
                                           country.example.length);
-                                      print(country.example.length);
                                       _controller.phoneController.clear();
                                     },
                                   ),
@@ -135,7 +135,15 @@ class LoginView extends StatelessWidget {
                             height: 20,
                           ),
                           SignupButton(
-                            onTap: () {},
+                            onTap: () {
+                              if (_controller.phoneController.text.length !=
+                                  _controller.phoneCodeLength.value) {
+                                Alert.errorWidget(
+                                    'Please fill the phone number');
+                              } else {
+                                _controller.signUp();
+                              }
+                            },
                           ),
                           const SizedBox(
                             height: 20,
